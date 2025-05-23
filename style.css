@@ -1,0 +1,219 @@
+*{
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: pixelfont;
+    src: url(./fonts/PixelifySans-Regular.ttf);
+    font-weight: 500;
+}
+
+
+a{
+    text-decoration: none;
+}
+
+.tamagochischerm p{
+    text-align: center;
+    font-family: pixelfont , "Arial", sans-serif;
+    font-size: 3em;
+    font-weight:bold;
+    color: white;
+    /* margin-top: 10em; */
+}
+
+.tamagochischerm img {
+    width: 15em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 21em;
+}
+
+.tamagochischerm a{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: "Calisto MT", "Arial", sans-serif;
+    font-size: 1em;
+    font-weight:bold;
+    margin-top: 0.3em;
+}
+
+.tamagochischerm .buttons{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+    flex-basis: auto;
+    margin-top:0.5em;
+    margin-bottom: 0em;
+    padding:0em;
+}
+
+.tamagochischerm .buttons button{
+    border-radius: 0.5em;
+    background-color:rgb(72, 176, 232);
+    padding:0.5em 0.5em 0.5em 0.5em;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.tamagochischerm .buttons button:hover{
+    font-weight: normal;
+    background-color:rgb(11, 99, 146);
+    color:white;
+    transform:scale(1.1);
+    transition:all 250ms ease;
+}
+
+body{
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.tamagochischerm{
+    background-image: url(Assets/achtergrondtamagotchischerm.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    height:100vh;
+    width: 100vw;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+
+.gevechtbuttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin-top: 0em;
+    margin-left: 0em;
+}
+   
+#pikachu { 
+    grid-area: 1 / 3 / 2 / 4;
+    margin-left: 5em;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    width:60%;
+    height: auto;
+}
+
+#eeveeachterkant {
+    grid-area: 2 / 1 / 4 / 2; 
+    margin-left: 0em;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    width:60%;
+    height: auto;
+}
+
+    
+#tackleknop { 
+    /* grid-area: 6 / 1 / 7 / 2;  */
+    grid-area: 4 / 1 / 5 / 2;
+    font-family: pixelfont , "Arial", sans-serif;
+    background-color:rgb(179, 206, 221);
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 2em;
+    padding:0.5em 0.5em 0.5em 0.5em;
+}
+
+#tackleknop:hover{
+    font-weight: normal;
+    background-color:rgb(88, 144, 152);
+    color:white;
+}
+
+#growlknop { 
+    /* grid-area: 6 / 2 / 7 / 3;  */
+    grid-area: 4 / 2 / 5 / 3;
+    font-family: pixelfont , "Arial", sans-serif;
+    background-color:rgb(179, 206, 221);
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 2em;
+    padding:0.5em 0.5em 0.5em 0.5em;
+}
+
+#growlknop:hover{
+    font-weight: normal;
+    background-color:rgb(88, 144, 152);
+    color:white;
+}
+
+#quickattackknop { 
+    /* grid-area: 7 / 1 / 8 / 2;  */
+    grid-area: 5 / 1 / 6 / 2;
+    font-family: pixelfont , "Arial", sans-serif;
+    background-color:rgb(179, 206, 221);
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 2em;
+    padding:0.5em 0.5em 0.5em 0.5em;
+}
+
+#quickattackknop:hover{
+    font-weight: normal;
+    background-color:rgb(88, 144, 152);
+    color:white;
+}
+
+#gnawknop { 
+    /* grid-area: 7 / 2 / 8 / 3;  */
+    grid-area: 5 / 2 / 6 / 3;
+    font-family: pixelfont , "Arial", sans-serif;
+    background-color:rgb(179, 206, 221);
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 2em;
+    padding:0.5em 0.5em 0.5em 0.5em;
+}
+
+#gnawknop:hover{
+    font-weight: normal;
+    background-color:rgb(88, 144, 152);
+    color:white;
+}
+
+/* .div5 { 
+    grid-area: 4 / 3 / 6 / 4; 
+    font-family: pixelfont , "Arial", sans-serif;
+    background-color:rgb(179, 206, 221);
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 2em;
+    padding:0.5em 0.5em 0.5em 0.5em;
+} */
+
+.gevechtscherm {
+    background-image: url(Assets/gevechtsceneachtergrondnieuw.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position:center;
+    height:100vh;
+    width: 100vw;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+
+.hidden{
+    display:none;
+    /* visibility: hidden; */
+}
+.audiohidden{
+    /* visibility: hidden; */
+    display:none;
+}
+

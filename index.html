@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eevee tamagotchi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="tamagochischerm">
+        <p>Aai eevee om je vriendschapslevel te verhogen</p>
+        <img src="Assets/eeveevoorkant.png">
+        <div class="buttons">
+            <button class="gevechtschermknop">zoek gevecht</button>
+            <button>evolueer</button>
+            <button>geef item</button>
+        </div>
+        <audio controls autoplay muted class="audiohidden">
+            <source src="music/1-06. Route 201 (Day).mp3" type="audio/mpeg">
+            Je browser support deze audio file niet
+            </audio>
+        <a href="bronnenpagina.html">Bronnen</a>
+    </div>
+
+    <div class="gevechtscherm hidden">
+        <div class="gevechtbuttons">
+            <img src="Assets/pikachuvoorkant.png" id="pikachu">
+            <img src="Assets/eeveeachterkant.png" id="eeveeachterkant">
+            <button id="tackleknop">tackle</button>
+            <button id="growlknop">growl</button>
+            <button id="quickattackknop">quick attack</button>
+            <button id="gnawknop">gnaw</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
+
