@@ -1,39 +1,69 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eevee tamagotchi</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eevee Tamagotchi</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="tamagochischerm">
-        <p>Aai eevee om je vriendschapslevel te verhogen</p>
-        <img src="Assets/eeveevoorkant.png">
-        <div class="buttons">
-            <button class="gevechtschermknop">zoek gevecht</button>
-            <button>evolueer</button>
-            <button>geef item</button>
-        </div>
-        <audio controls autoplay muted class="audiohidden">
-            <source src="music/1-06. Route 201 (Day).mp3" type="audio/mpeg">
-            Je browser support deze audio file niet
-            </audio>
-        <a href="bronnenpagina.html">Bronnen</a>
+  <div class="tamagochischerm">
+    <p>Aai Eevee om je vriendschapslevel te verhogen</p>
+    <img src="Assets/eeveevoorkant.png" alt="Eevee"/>
+    <div class="buttons">
+      <button class="gevechtschermknop">Zoek gevecht</button>
+      <button id="geefItemKnop">Geef item</button>
     </div>
-
-    <div class="gevechtscherm hidden">
-        <div class="gevechtbuttons">
-            <img src="Assets/pikachuvoorkant.png" id="pikachu">
-            <img src="Assets/eeveeachterkant.png" id="eeveeachterkant">
-            <button id="tackleknop">tackle</button>
-            <button id="growlknop">growl</button>
-            <button id="quickattackknop">quick attack</button>
-            <button id="gnawknop">gnaw</button>
-        </div>
+    <div id="itemsMenu" class="hidden">
+      <p id="evolutieTekst">Kies een item om aan Eevee te geven:</p>
+      <ul id="itemsLijst"></ul>
     </div>
+    <a href="bronnenpagina.html">Bronnen</a>
+  </div>
 
-    <script src="index.js"></script>
+  <div class="gevechtscherm hidden">
+    <div class="gevechtschermelementen">
+      <p id="hppikachu">HP 120</p>
+      <img src="Assets/pikachuvoorkant.png" id="pikachu" />
+      <img src="Assets/eeveeachterkant.png" id="eeveeachterkant" />
+      <p id="hpeevee">HP 100</p>
+      <button id="tackleknop">Tackle</button>
+      <button id="growlknop">Growl</button>
+      <button id="quickattackknop">Quick Attack</button>
+      <button id="gnawknop">Gnaw</button>
+    </div>
+  </div>
+
+  <div class="winscherm hidden">
+    <div class="winschermelementen">
+      <p id="winbericht">Gefeliciteerd, je hebt gewonnen!</p>
+      <p id="itemMelding">Je hebt een item gekregen:</p>
+      <img id="gevondenItemAfbeelding" src="" alt="gevonden item" style="width: 100px;">
+      <button id="tamagochischermknop">Naar huis</button>
+    </div>
+  </div>
+
+  <div class="verliesscherm hidden">
+    <div class="verlieselementen">
+      <p id="verliesbericht">Oh nee, je hebt verloren!</p>
+      <button id="opnieuwknop">Probeer opnieuw</button>
+    </div>
+  </div>
+
+  <audio id="TamagochiAudio" loop>
+    <source src="music/1-06. Route 201 (Day).mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="battleAudio" loop>
+    <source src="music/Pokémon Diamond, Pearl & Platinum - Trainer Battle Music (HQ).mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="winAudio" loop>
+    <source src="music/Victory! (Trainer Battle) - Pokémon Diamond_Pearl.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="verliesAudio" loop>
+    <source src="music/Loss - Pokémon Duel Jingle  Sound Effect.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="index.js"></script>
 </body>
 </html>
 
