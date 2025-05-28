@@ -192,6 +192,7 @@ body {
     font-size: 2em;
     padding:0.5em 0.5em 0.5em 0.5em;
     margin-top: 1.3em;
+    z-index: 3;
 }
 
 #tackleknop:hover{
@@ -209,6 +210,7 @@ body {
     font-size: 2em;
     padding:0.5em 0.5em 0.5em 0.5em;
     margin-top: 1.3em;
+    z-index: 3;
 }
 
 #growlknop:hover{
@@ -226,6 +228,7 @@ body {
     font-size: 2em;
     padding:0.5em 0.5em 0.5em 0.5em;
     margin-bottom: 1.3em;
+    z-index: 3;
 }
 
 #quickattackknop:hover{
@@ -243,6 +246,7 @@ body {
     font-size: 2em;
     padding:0.5em 0.5em 0.5em 0.5em;
     margin-bottom: 1.3em;
+    z-index: 3;
 }
 
 #gnawknop:hover{
@@ -273,8 +277,6 @@ body {
     overflow-y: hidden;
 }
 
-
-
 .hidden{
     display:none;
     /* visibility: hidden; */
@@ -286,6 +288,7 @@ body {
 
 .schud {
     animation: schud 0.4s;
+    z-index: 1;
   }
   
   @keyframes schud {

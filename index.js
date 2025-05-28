@@ -1,261 +1,281 @@
-//VARIABELEN
-let pikachuHP = 120;
-let eeveeHP = 100;
-let verkregenItems = [];
-let huidigeEvolutie = null;
+// VARIABELEN
+let pikachuHP = 120
+let eeveeHP = 100
+let verkregenItems = []
+let huidigeEvolutie = null
+let huidigeEvolutieHP = 150
 
-const tamagochiScherm = document.querySelector(".tamagochischerm");
-const gevechtScherm   = document.querySelector(".gevechtscherm");
-const winScherm       = document.querySelector(".winscherm");
-const verliesScherm   = document.querySelector(".verliesscherm");
+const tamagochiScherm   = document.querySelector(".tamagochischerm")
+const gevechtScherm     = document.querySelector(".gevechtscherm")
+const winScherm         = document.querySelector(".winscherm")
+const verliesScherm     = document.querySelector(".verliesscherm")
 
-const eeveeAaien      = document.querySelector(".tamagochischerm img");
-const pElement        = document.querySelector(".tamagochischerm p");
-const gevechtKnop     = document.querySelector(".gevechtschermknop");
-const terugKnop       = document.querySelector("#tamagochischermknop");
-const verliesKnop     = document.querySelector("#opnieuwknop");
+const eeveeAaien        = document.querySelector(".tamagochischerm img")
+const pElement          = document.querySelector(".tamagochischerm p")
+const gevechtKnop       = document.querySelector(".gevechtschermknop")
+const terugKnop         = document.querySelector("#tamagochischermknop")
+const verliesKnop       = document.querySelector("#opnieuwknop")
 
-const achtergrondAudio = document.querySelector("#TamagochiAudio");
-const battleAudio      = document.querySelector("#battleAudio");
-const winAudio         = document.querySelector("#winAudio");
-const verliesAudio	   = document.querySelector("#verliesAudio")
+const achtergrondAudio  = document.querySelector("#TamagochiAudio")
+const battleAudio       = document.querySelector("#battleAudio")
+const winAudio          = document.querySelector("#winAudio")
+const verliesAudio      = document.querySelector("#verliesAudio")
 
-const pikachuImg = document.querySelector("#pikachu");
-const eeveeImg = document.querySelector("#eeveeachterkant")
-const hpPikachu  = document.querySelector("#hppikachu");
-const hpEevee    = document.querySelector("#hpeevee");
+const pikachuImg        = document.querySelector("#pikachu")
+const eeveeImg          = document.querySelector("#eeveeachterkant")
+const hpPikachu         = document.querySelector("#hppikachu")
+const hpEevee           = document.querySelector("#hpeevee")
 
-const itemsKnop = document.querySelector("#geefItemKnop");
-const itemsMenu = document.querySelector("#itemsMenu");
-const itemsLijst = document.querySelector("#itemsLijst");
-const evolutieTekst = document.querySelector("#evolutieTekst");
-const gevondenItemAfbeelding = document.querySelector("#gevondenItemAfbeelding");
-const itemMeldingElement = document.querySelector("#itemMelding");
+const itemsKnop         = document.querySelector("#geefItemKnop")
+const itemsMenu         = document.querySelector("#itemsMenu")
+const itemsLijst        = document.querySelector("#itemsLijst")
+const evolutieTekst     = document.querySelector("#evolutieTekst")
+const gevondenItemAfbeelding = document.querySelector("#gevondenItemAfbeelding")
+const itemMeldingElement     = document.querySelector("#itemMelding")
 
-// EVOLUTIES
+// CHAT GPT
 const evoluties = {
-  "Water Stone":  { naam: "Vaporeon",  img: "Assets/vaporeon.png"  },
-  "Fire Stone":   { naam: "Flareon",   img: "Assets/flareon.png"   },
-  "Thunder Stone":{ naam: "Jolteon",   img: "Assets/jolteon.png"   },
-  "Leaf Stone":   { naam: "Leafeon",   img: "Assets/leafeon.png"   },
-  "Ice Stone":    { naam: "Glaceon",   img: "Assets/glaceon.png"   },
-  "Moon Stone":   { naam: "Umbreon",   img: "Assets/umbreon.png"   },
-  "Sun Stone":    { naam: "Espeon",    img: "Assets/espeon.png"    },
-  "Fairy Stone":  { naam: "Sylveon",   img: "Assets/sylveon.png", achterkant: "Assets/sylveonachterkant.png" }
-};
-
-// AANVALLEN
-const attacks = {
-    tackleknop:      { values: [10, 20, 25],                 sound: "music/Tackle.mp3" },
-    growlknop:       { values: [5, 10, 15],                  sound: "music/Growl.mp3" },
-    quickattackknop: { values: [10, 20, 30], critChance: .3, sound: "music/Quick Attack.mp3" },
-    gnawknop:        { values: [10, 15, 20, 25, 30],         sound: "music/Growl.mp3" }
-  };
-
-// START ACHTERGRONDMUZIEK
-achtergrondAudio.play();
-
-
-// SCHERM WISSELEN
-function openGevecht() {
-  gevechtScherm.classList.remove("hidden");
-  tamagochiScherm.classList.add   ("hidden");
-  verliesScherm.classList.add   ("hidden");
-
-  [verliesAudio, achtergrondAudio].forEach(stopEnResetAudio);
-  battleAudio.currentTime = 0;
-  battleAudio.play();
-  
+  "Water Stone":   { naam: "Vaporeon",  img: "Assets/vaporeon.png" },
+  "Fire Stone":    { naam: "Flareon",   img: "Assets/flareon.png" },
+  "Thunder Stone": { naam: "Jolteon",   img: "Assets/jolteon.png" },
+  "Leaf Stone":    { naam: "Leafeon",   img: "Assets/leafeon.png", achterkant: "Assets/leafeonachterkant.png" },
+  "Ice Stone":     { naam: "Glaceon",   img: "Assets/glaceon.png", achterkant: "Assets/glaceonachterkant.png" },
+  "Moon Stone":    { naam: "Umbreon",   img: "Assets/umbreon.png" },
+  "Sun Stone":     { naam: "Espeon",    img: "Assets/espeon.png" },
+  "Fairy Stone":   { naam: "Sylveon",   img: "Assets/sylveon.png", achterkant: "Assets/sylveonachterkant.png" }
 }
 
+const attacks = {
+  tackleknop:      { values: [10, 20, 25],                 sound: "music/Tackle.mp3" },
+  growlknop:       { values: [5, 10, 15],                  sound: "music/Growl.mp3" },
+  quickattackknop: { values: [10, 20, 30], critChance: 0.3, sound: "music/Quick Attack.mp3" },
+  gnawknop:        { values: [10, 15, 20, 25, 30],         sound: "music/Growl.mp3" }
+}
+
+function openGevecht() {
+  gevechtScherm.classList.remove("hidden")
+  tamagochiScherm.classList.add("hidden")
+  verliesScherm.classList.add("hidden")
+
+  stopEnResetAudio(verliesAudio)
+  stopEnResetAudio(achtergrondAudio)
+  battleAudio.currentTime = 0
+  battleAudio.play()
+  updateHP()
+}
 
 function winGevecht() {
-  gevechtScherm.classList.add("hidden");
-  winScherm.classList.remove("hidden");
+  gevechtScherm.classList.add("hidden")
+  winScherm.classList.remove("hidden")
 
-  battleAudio.pause();
-  winAudio.currentTime = 0;
-  winAudio.play();
+  stopEnResetAudio(battleAudio)
+  winAudio.currentTime = 0
+  winAudio.play()
 
-  resetBattle();
+  resetBattle()
+ // CHAT GPT
+  const itemKeys = Object.keys(evoluties)
+  const randomItem = itemKeys[Math.floor(Math.random() * itemKeys.length)]
+  verkregenItems.push(randomItem)
 
-  // Kies een random item
-  const itemKeys = Object.keys(evoluties);
-  const randomItem = itemKeys[Math.floor(Math.random() * itemKeys.length)];
-  verkregenItems.push(randomItem);
-
-  // Toon het item
-  itemMeldingElement.textContent = "Je hebt een " + randomItem + " gevonden!";
-  gevondenItemAfbeelding.src = `Assets/${randomItem.toLowerCase().replace(" ", "")}.png`;
-  gevondenItemAfbeelding.alt = randomItem;
+  itemMeldingElement.textContent = "Je hebt een " + randomItem + " gevonden!"
+  gevondenItemAfbeelding.src = "Assets/" + randomItem.toLowerCase().replace(" ", "") + ".png"
+  gevondenItemAfbeelding.alt = randomItem
 }
 
 function verliesGevecht() {
-  gevechtScherm.classList.add("hidden");
-  winScherm.classList.add("hidden");
-  verliesScherm.classList.remove("hidden");
+  gevechtScherm.classList.add("hidden")
+  winScherm.classList.add("hidden")
+  verliesScherm.classList.remove("hidden")
 
-  [battleAudio, achtergrondAudio].forEach(stopEnResetAudio);
-  verliesAudio.currentTime = 0;
-  verliesAudio.play();
+  stopEnResetAudio(battleAudio)
+  stopEnResetAudio(achtergrondAudio)
+  verliesAudio.currentTime = 0
+  verliesAudio.play()
 
-  resetBattle();
+  resetBattle()
+  eeveeImg.classList.remove("faint")
 }
 
 function terugNaarTamagotchi() {
-    // winscherm → tamagochi
-    winScherm.classList.add("hidden");
-    verliesScherm.classList.add("hidden");
-    tamagochiScherm.classList.remove("hidden");
-  
-    [battleAudio, winAudio, verliesAudio].forEach(stopEnResetAudio);
-    achtergrondAudio.currentTime = 0;
-    achtergrondAudio.play();
-    resetBattle();
-}
+  winScherm.classList.add("hidden")
+  verliesScherm.classList.add("hidden")
+  tamagochiScherm.classList.remove("hidden")
 
-// FUNCTIES
+  stopEnResetAudio(battleAudio)
+  stopEnResetAudio(winAudio)
+  stopEnResetAudio(verliesAudio)
+
+  achtergrondAudio.currentTime = 0
+  achtergrondAudio.play()
+  resetBattle()
+}
+// CHAT GPT maar zelf aangepast
 function geefItemAanEevee() {
   if (verkregenItems.length === 0) {
-    evolutieTekst.textContent = "Je hebt nog geen items.";
-    return;
+    evolutieTekst.textContent = "Je hebt nog geen items."
+  } else {
+    itemsMenu.classList.toggle("hidden")
+    itemsLijst.innerHTML = ""
+
+    for (let i = 0; i < verkregenItems.length; i++) {
+      const item = verkregenItems[i]
+      const evolutie = evoluties[item]
+
+      const li = document.createElement("li")
+      li.textContent = item + " → " + evolutie.naam
+      li.style.cursor = "pointer"
+
+      li.addEventListener("click", function () {
+        if (!huidigeEvolutie) {
+          huidigeEvolutie = evolutie
+          eeveeImg.src = evolutie.achterkant || evolutie.img
+          eeveeAaien.src = evolutie.img
+          pElement.textContent = evolutie.naam + " is blij!"
+          evolutieTekst.textContent = "Eevee is geëvolueerd in " + evolutie.naam + "!"
+
+          verkregenItems.splice(i, 1)
+          itemsMenu.classList.add("hidden")
+        } else {
+          evolutieTekst.textContent = "Eevee is al geëvolueerd in " + huidigeEvolutie.naam + "."
+        }
+      })
+
+      itemsLijst.appendChild(li)
+    }
   }
-
-  itemsMenu.classList.toggle("hidden");
-  itemsLijst.innerHTML = "";
-
-  verkregenItems.forEach((item, index) => {
-    const evolutie = evoluties[item];
-    const li = document.createElement("li");
-    li.textContent = `${item} → ${evolutie.naam}`;
-    li.style.cursor = "pointer";
-
-    li.addEventListener("click", () => {
-      if (huidigeEvolutie) {
-        evolutieTekst.textContent = `Eevee is al geëvolueerd in ${huidigeEvolutie.naam}.`;
-        return;
-      }
-
-      huidigeEvolutie = evolutie;
-      eeveeImg.src = evolutie.achterkant || evolutie.img;
-      eeveeAaien.src = evolutie.img;
-      pElement.textContent = `${evolutie.naam} is blij!`;
-      evolutieTekst.textContent = `Eevee is geëvolueerd in ${evolutie.naam}!`;
-
-      verkregenItems.splice(index, 1);
-      itemsMenu.classList.add("hidden");
-    });
-
-    itemsLijst.appendChild(li);
-  });
 }
-
+// CHATGPT
+// how to use javascript to play an audio file when you visit a website and change audio when a class is being hidden?
 function stopEnResetAudio(audio) {
-  audio.pause();
-  audio.currentTime = 0;
+  audio.pause()
+  audio.currentTime = 0
 }
 
 function resetBattle() {
-  pikachuHP = 120;
-  eeveeHP = 100;
-  updateHP();
-  pikachuImg.classList.remove("faint");
-  eeveeImg.classList.remove("faint");
-}
-
-function eeveeGeaaid() {
-  if (huidigeEvolutie) {
-    pElement.textContent = `${huidigeEvolutie.naam} is blij!`;
-    return;
-  }
-  eeveeAaien.src = "Assets/eeveeblij.png";
-  pElement.textContent = "Eevee is blij!";
+  pikachuHP = 120
+  eeveeHP = 100
+  huidigeEvolutieHP = 150
+  updateHP()
+  pikachuImg.classList.remove("faint")
+  eeveeImg.classList.remove("faint")
 }
 
 function plaatjeVeranderen() {
   if (huidigeEvolutie) {
-    pElement.textContent = `${huidigeEvolutie.naam} is blij!`;
-    return;
+    pElement.textContent = huidigeEvolutie.naam + " is blij!"
+  } else {
+    eeveeAaien.src = "Assets/eeveevoorkant.png"
+    pElement.textContent = "Aai Eevee voor een glimlach!"
   }
-  eeveeAaien.src = "Assets/eeveevoorkant.png";
-  pElement.textContent = "Aai Eevee voor een glimlach!";
+}
+
+function eeveeGeaaid() {
+  if (huidigeEvolutie) {
+    pElement.textContent = huidigeEvolutie.naam + " is blij!"
+  } else {
+    eeveeAaien.src = "Assets/eeveeblij.png"
+    pElement.textContent = "Eevee is blij!"
+  }
 }
 
 function berekenDamage(values, critChance = 0.2, critMultiplier = 2) {
-  const basisDamage       = values[Math.floor(Math.random() * values.length)];
-  const isCritical        = Math.random() < critChance;
-  const damage            = isCritical ? basisDamage * critMultiplier : basisDamage; //CHATGPT: 
-  return { damage, isCritical };
+  const basisDamage = values[Math.floor(Math.random() * values.length)]
+  const isCritical = Math.random() < critChance
+  const damage = isCritical ? basisDamage * critMultiplier : basisDamage
+  return { damage, isCritical }
 }
 
 function speelGeluid(src) {
-    const a = new Audio(src);
-    a.play();
+  const a = new Audio(src)
+  a.play()
 }
 
 function updateHP() {
-    hpPikachu.textContent = "HP " + pikachuHP;
-    hpEevee.textContent   = "HP " + eeveeHP;
+  hpPikachu.textContent = "HP " + pikachuHP
+  hpEevee.textContent = huidigeEvolutie ? "HP " + huidigeEvolutieHP : "HP " + eeveeHP
 }
 
 function pikachuAanval() {
-    const damage = Math.floor(Math.random() * 15) + 5;
-    eeveeHP -= damage;
-    eeveeHP = Math.max(0, eeveeHP);
-    updateHP();
-  
-    document.querySelector("#eeveeachterkant").classList.add("schud");
-  
-    setTimeout(() => {
-      document.querySelector("#eeveeachterkant").classList.remove("schud");
-  
+  const damage = Math.floor(Math.random() * 15) + 5
+
+  if (huidigeEvolutie) {
+    huidigeEvolutieHP -= damage
+    huidigeEvolutieHP = Math.max(0, huidigeEvolutieHP)
+    updateHP()
+    eeveeImg.classList.add("schud")
+
+    setTimeout(function () {
+      eeveeImg.classList.remove("schud")
+      if (huidigeEvolutieHP <= 0) {
+        verliesGevecht()
+      }
+    }, 400)
+  } else {
+    eeveeHP -= damage
+    eeveeHP = Math.max(0, eeveeHP)
+    updateHP()
+    eeveeImg.classList.add("schud")
+
+    setTimeout(function () {
+      eeveeImg.classList.remove("schud")
       if (eeveeHP <= 0) {
-        verliesGevecht();
+        setTimeout(verliesGevecht, 1000)
+        eeveeImg.classList.add("faint")
       }
-    }, 400);
+    }, 400)
+  }
 }
-  
+
 function doeEeveeAanval(damage, isCritical) {
-    pikachuHP -= damage;
-    if (pikachuHP < 0) pikachuHP = 0;
-    updateHP();
-  
-    pikachuImg.classList.add("schud");
-    if (isCritical) pikachuImg.classList.add("critical");
-  
-    setTimeout(() => {
-      pikachuImg.classList.remove("schud", "critical");
-  
-      if (pikachuHP <= 0) {
-        winGevecht();
-      } else {
-        // Pikachu valt terug aan
-        setTimeout(pikachuAanval, 500);
-      }
-    }, 400);
+  pikachuHP -= damage
+  if (pikachuHP < 0) pikachuHP = 0
+  updateHP()
+
+  pikachuImg.classList.add("schud")
+  if (isCritical) {
+    pikachuImg.classList.add("critical")
+  }
+
+  setTimeout(function () {
+    pikachuImg.classList.remove("schud", "critical")
+    if (pikachuHP <= 0) {
+      setTimeout(winGevecht, 1000)
+      pikachuImg.classList.add("faint")
+    } else {
+      setTimeout(pikachuAanval, 500)
+    }
+  }, 400)
 }
 
+function handleAttackButtonClick(values, critChance, sound) {
+  return function () {
+    const result = berekenDamage(values, critChance)
+    speelGeluid(sound)
+    doeEeveeAanval(result.damage, result.isCritical)
+  }
+}
 
+function setupAttackButtons() {
+  for (let btnId in attacks) {
+    const aanval = attacks[btnId]
+    const button = document.querySelector("#" + btnId)
+    button.addEventListener("click", handleAttackButtonClick(aanval.values, aanval.critChance || 0.2, aanval.sound))
+  }
+}
 
-// EVENTLISTENERS
-//eevee aai systeem
-eeveeAaien.addEventListener('mouseover', eeveeGeaaid)
-eeveeAaien.addEventListener('mouseout', plaatjeVeranderen)
+eeveeAaien.addEventListener("mouseover", eeveeGeaaid)
+eeveeAaien.addEventListener("mouseout", plaatjeVeranderen)
 
-gevechtKnop.addEventListener("click", openGevecht);
-terugKnop.addEventListener("click", terugNaarTamagotchi);
-verliesKnop.addEventListener("click", openGevecht);
+gevechtKnop.addEventListener("click", openGevecht)
+terugKnop.addEventListener("click", terugNaarTamagotchi)
+verliesKnop.addEventListener("click", openGevecht)
 
-itemsKnop.addEventListener("click", geefItemAanEevee);
+itemsKnop.addEventListener("click", geefItemAanEevee)
 
-// aanvalknoppen
-Object.entries(attacks).forEach(([btnId, { values, critChance = 0.2, sound }]) => {
-    document.querySelector(`#${btnId}`).addEventListener("click", () => {
-      const { damage, isCritical } = berekenDamage(values, critChance);
-      speelGeluid(sound);
-      doeEeveeAanval(damage, isCritical);
-    });
-});
+function laadPagina() {
+  achtergrondAudio.play()
+  setupAttackButtons()
+}
 
-
-
+laadPagina()
