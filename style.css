@@ -353,6 +353,8 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
     background-color: rgb(194, 89, 85);
+    background-size: cover;
+    background-repeat: repeat;
 }
 
 .verlieselementen{
