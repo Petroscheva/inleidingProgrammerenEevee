@@ -10,7 +10,7 @@
 <body>
   <div class="tamagochischerm">
     <p>Aai Eevee voor een glimlach</p>
-    <img src="Assets/eeveevoorkant.png" alt="Eevee">
+    <img src="Assets/eeveevoorkant.png" alt="Eevee voorkant">
     <div class="buttons">
       <button class="gevechtschermknop">Zoek gevecht</button>
       <button id="geefItemKnop">Geef item</button>
@@ -25,8 +25,8 @@
   <div class="gevechtscherm hidden">
     <div class="gevechtschermelementen">
       <p id="hppikachu">HP 120</p>
-      <img src="Assets/pikachuvoorkant.png" id="pikachu">
-      <img src="Assets/eeveeachterkant.png" id="eeveeachterkant">
+      <img src="Assets/pikachuvoorkant.png" id="pikachu" alt="Pikachu voorkant">
+      <img src="Assets/eeveeachterkant.png" id="eeveeachterkant" alt="Eevee achterkant">
       <p id="hpeevee">HP 100</p>
       <button id="tackleknop">Tackle</button>
       <button id="growlknop">Growl</button>
@@ -39,7 +39,7 @@
     <div class="winschermelementen">
       <p id="winbericht">Gefeliciteerd, je hebt gewonnen!</p>
       <p id="itemMelding">Je hebt een item gekregen:</p>
-      <img id="gevondenItemAfbeelding" src="" alt="gevonden item">
+      <img id="gevondenItemAfbeelding" src="" alt="Gevonden item">
       <button id="tamagochischermknop">Naar huis</button>
     </div>
   </div>
@@ -50,22 +50,20 @@
       <button id="opnieuwknop">Probeer opnieuw</button>
     </div>
   </div>
-<!-- // CHATGPT
-// Prompt: how to use javascript to play an audio file when you visit a website and change audio when a class is being hidden? -->
+
   <audio id="TamagochiAudio" loop>
-    <source src="music/1-06. Route 201 (Day).mp3" type="audio/mpeg">
+    <source src="music/1-06_Route_201_Day.mp3" type="audio/mpeg">
   </audio>
   <audio id="battleAudio" loop>
-    <source src="music/Pokémon Diamond, Pearl & Platinum - Trainer Battle Music (HQ).mp3" type="audio/mpeg">
+    <source src="music/Pokemon_Diamond_Pearl_Platinum_Trainer_Battle_Music.mp3" type="audio/mpeg">
   </audio>
   <audio id="winAudio" loop>
-    <source src="music/Victory! (Trainer Battle) - Pokémon Diamond_Pearl.mp3" type="audio/mpeg">
+    <source src="music/Victory_Trainer_Battle_Pokemon_Diamond_Pearl.mp3" type="audio/mpeg">
   </audio>
   <audio id="verliesAudio" loop>
-    <source src="music/Loss - Pokémon Duel Jingle  Sound Effect.mp3" type="audio/mpeg">
+    <source src="music/Loss_Pokemon_Duel_Jingle_Sound_Effect.mp3" type="audio/mpeg">
   </audio>
 
   <script src="index.js"></script>
 </body>
 </html>
-
