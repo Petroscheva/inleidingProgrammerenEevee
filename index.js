@@ -49,14 +49,14 @@ const evoluties = {
   "Sun Stone":     { naam: "Espeon",    img: "Assets/espeon.png", achterkant: "Assets/espeonachterkant.png" },
   "Fairy Stone":   { naam: "Sylveon",   img: "Assets/sylveon.png", achterkant: "Assets/sylveonachterkant.png" }
 }
-
+// aanval waardes met bijbehorende geluiden
 const attacks = {
   tackleknop:      { values: [10, 20, 25],                 sound: "music/Tackle.mp3" },
   growlknop:       { values: [5, 10, 15],                  sound: "music/Growl.mp3" },
   quickattackknop: { values: [10, 20, 30], critChance: 0.3, sound: "music/Quick Attack.mp3" },
   gnawknop:        { values: [10, 15, 20, 25, 30],         sound: "music/Growl.mp3" }
 }
-
+//van tamagochischerm naar gevechtscherm
 function openGevecht() {
   gevechtScherm.classList.remove("hidden")
   tamagochiScherm.classList.add("hidden")
@@ -68,7 +68,7 @@ function openGevecht() {
   battleAudio.play()
   updateHP()
 }
-
+//van gevechtscherm naar winscherm
 function winGevecht() {
   gevechtScherm.classList.add("hidden")
   winScherm.classList.remove("hidden")
@@ -88,7 +88,7 @@ function winGevecht() {
   gevondenItemAfbeelding.src = "Assets/" + randomItem.toLowerCase().replace(" ", "") + ".png"
   gevondenItemAfbeelding.alt = randomItem
 }
-
+//van gevechtscherm naar verliesscherm
 function verliesGevecht() {
   gevechtScherm.classList.add("hidden")
   winScherm.classList.add("hidden")
@@ -102,7 +102,7 @@ function verliesGevecht() {
   resetBattle()
   eeveeImg.classList.remove("faint")
 }
-
+//van winscherm terug naar tamagochischerm
 function terugNaarTamagotchi() {
   winScherm.classList.add("hidden")
   verliesScherm.classList.add("hidden")
@@ -118,6 +118,7 @@ function terugNaarTamagotchi() {
 }
 // CHAT GPT maar zelf aangepast
 // prompt: ik wil nu dat de item van het wingevechtscherm in de items knop komt en dat je deze aan eevee kan geven in het tamagochischerm, waardoor deze kan evolueren in een van de 8 evoluaties
+// geeft een item aan eevee totdat eevee alle items gekregen heeft en zet deze items in een lijst
 function geefItemAanEevee() {
   if (verkregenItems.length === 0) {
     evolutieTekst.textContent = "Je hebt nog geen items."
@@ -154,11 +155,12 @@ function geefItemAanEevee() {
 }
 // CHATGPT
 // Prompt: how to use javascript to play an audio file when you visit a website and change audio when a class is being hidden?
+//stopt het spelen van audio en zet deze terug naar het begin van de audio
 function stopEnResetAudio(audio) {
   audio.pause()
   audio.currentTime = 0
 }
-
+//reset alle hp waardes en haalt alle animaties er af
 function resetBattle() {
   pikachuHP = 120
   eeveeHP = 100
@@ -216,7 +218,8 @@ function pikachuAanval() {
     setTimeout(function () {
       eeveeImg.classList.remove("schud")
       if (huidigeEvolutieHP <= 0) {
-        verliesGevecht()
+        setTimeout(verliesGevecht, 1000)
+        eeveeImg.classList.add("faint")
       }
     }, 400)
   } else {
