@@ -338,6 +338,7 @@ body {
     cursor: pointer;
     margin-left: auto;
     margin-right: auto;
+    width:30em;
 }
 
 #tamagochischermknop:hover{
@@ -351,7 +352,7 @@ body {
 .verliesscherm{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(11, 1fr);
     background-color: rgb(194, 89, 85);
 }
 
@@ -379,6 +380,7 @@ body {
     cursor: pointer;
     margin-left: auto;
     margin-right: auto;
+    width:30em;
 }
 
 #opnieuwknop:hover{
