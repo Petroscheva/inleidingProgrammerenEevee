@@ -39,6 +39,7 @@ const itemMeldingElement     = document.querySelector("#itemMelding")
 
 // CHAT GPT
 //prompt: ik wil nu dat de item van het wingevechtscherm in de items knop komt en dat je deze aan eevee kan geven in het tamagochischerm, waardoor deze kan evolueren in een van de 8 evoluaties
+//Deze objectlijst koppelt stenen aan Eevee-evoluties met bijbehorende afbeeldingen
 const evoluties = {
   "Water Stone":   { naam: "Vaporeon",  img: "Assets/vaporeon.png", achterkant: "Assets/vaporeonachterkant.png" },
   "Fire Stone":    { naam: "Flareon",   img: "Assets/flareon.png", achterkant: "Assets/flareonachterkant.png" },
@@ -49,7 +50,7 @@ const evoluties = {
   "Sun Stone":     { naam: "Espeon",    img: "Assets/espeon.png", achterkant: "Assets/espeonachterkant.png" },
   "Fairy Stone":   { naam: "Sylveon",   img: "Assets/sylveon.png", achterkant: "Assets/sylveonachterkant.png" }
 }
-// aanval waardes met bijbehorende geluiden
+//Deze objectlijst bepaalt aanval waardes met bijbehorende geluiden
 const attacks = {
   tackleknop:      { values: [10, 20, 25],                 sound: "music/Tackle.mp3" },
   growlknop:       { values: [5, 10, 15],                  sound: "music/Growl.mp3" },
@@ -169,7 +170,7 @@ function resetBattle() {
   pikachuImg.classList.remove("faint")
   eeveeImg.classList.remove("faint")
 }
-
+//verandert de tekst naar de evolutie is blij als eevee geevolueerd is en anders staat er dat je eevee kan aaien voor een glimlach
 function plaatjeVeranderen() {
   if (huidigeEvolutie) {
     pElement.textContent = huidigeEvolutie.naam + " is blij!"
@@ -178,7 +179,7 @@ function plaatjeVeranderen() {
     pElement.textContent = "Aai Eevee voor een glimlach!"
   }
 }
-
+//verandert de tekst naar de evolutie is blij als eevee geevolueerd is en anders staat er dat eevee blij is
 function eeveeGeaaid() {
   if (huidigeEvolutie) {
     pElement.textContent = huidigeEvolutie.naam + " is blij!"
@@ -187,7 +188,7 @@ function eeveeGeaaid() {
     pElement.textContent = "Eevee is blij!"
   }
 }
-
+//berekent willekeurige schade en bepaalt of het een kritieke aanval is
 function berekenDamage(values, critChance = 0.2, critMultiplier = 2) {
   const basisDamage = values[Math.floor(Math.random() * values.length)]
   const isCritical = Math.random() < critChance
@@ -196,16 +197,17 @@ function berekenDamage(values, critChance = 0.2, critMultiplier = 2) {
 }
 // CHATGPT
 // Prompt: how to use javascript to play an audio file when you visit a website and change audio when a class is being hidden?
+//speelt een geluidsbestand af via de opgegeven bron (src)
 function speelGeluid(src) {
   const a = new Audio(src)
   a.play()
 }
-
+//werkt de HP-tekst bij van Pikachu en Eevee (of zijn evolutie)
 function updateHP() {
   hpPikachu.textContent = "HP " + pikachuHP
   hpEevee.textContent = huidigeEvolutie ? "HP " + huidigeEvolutieHP : "HP " + eeveeHP
 }
-
+//laat Pikachu schade doen aan Eevee of zijn evolutie en checkt of hun HP op 0 komt om het gevecht te beëindigen
 function pikachuAanval() {
   const damage = Math.floor(Math.random() * 15) + 5
 
@@ -237,7 +239,7 @@ function pikachuAanval() {
     }, 400)
   }
 }
-
+//voert Eevee's aanval uit, toont animaties, werkt de HP bij en bepaalt of Pikachu faint of terugslaat
 function doeEeveeAanval(damage, isCritical) {
   pikachuHP -= damage
   if (pikachuHP < 0) pikachuHP = 0
@@ -258,36 +260,36 @@ function doeEeveeAanval(damage, isCritical) {
     }
   }, 400)
 }
-
-function handleAttackButtonClick(values, critChance, sound) {
+//maakt een klikbare aanvalsknop die schade berekent, geluid afspeelt en de aanval uitvoert
+function aanvalKnoppenKlik(values, critChance, sound) {
   return function () {
     const result = berekenDamage(values, critChance)
     speelGeluid(sound)
     doeEeveeAanval(result.damage, result.isCritical)
   }
 }
-
-function setupAttackButtons() {
+//zorgt ervoor dat de aanvalsknoppen reageren als je erop klikt
+function zetAanvalKnoppenKlaar() {
   for (let btnId in attacks) {
     const aanval = attacks[btnId]
     const button = document.querySelector("#" + btnId)
-    button.addEventListener("click", handleAttackButtonClick(aanval.values, aanval.critChance || 0.2, aanval.sound))
+    button.addEventListener("click", aanvalKnoppenKlik(aanval.values, aanval.critChance || 0.2, aanval.sound))
   }
 }
-
+//de pagina wordt geladen door de achtergrondaudio te laten spelen en de functie zetAanvalKnoppenKlaar uitgevoerd wordt
 function laadPagina() {
   achtergrondAudio.play()
-  setupAttackButtons()
+  zetAanvalKnoppenKlaar()
 }
 
 laadPagina()
-
+//zorgt ervoor dat als je over eevee heen hovert, dat de functie eevee geaaid of plaatjeveranderen uitgevoerd wordt
 eeveeAaien.addEventListener("mouseover", eeveeGeaaid)
 eeveeAaien.addEventListener("mouseout", plaatjeVeranderen)
-
+//zorgt ervoor dat als je op de knoppen drukt dat de desbetreffende functie uitgevoerd wordt
 gevechtKnop.addEventListener("click", openGevecht)
 terugKnop.addEventListener("click", terugNaarTamagotchi)
 verliesKnop.addEventListener("click", openGevecht)
-
+//als je op de itemsknop drukt wordt de functie uitgevoerd om een item te kunnen geven aan eevee
 itemsKnop.addEventListener("click", geefItemAanEevee)
 
