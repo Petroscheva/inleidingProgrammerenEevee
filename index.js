@@ -40,13 +40,13 @@ const itemMeldingElement     = document.querySelector("#itemMelding")
 // CHAT GPT
 //prompt: ik wil nu dat de item van het wingevechtscherm in de items knop komt en dat je deze aan eevee kan geven in het tamagochischerm, waardoor deze kan evolueren in een van de 8 evoluaties
 const evoluties = {
-  "Water Stone":   { naam: "Vaporeon",  img: "Assets/vaporeon.png" },
-  "Fire Stone":    { naam: "Flareon",   img: "Assets/flareon.png" },
-  "Thunder Stone": { naam: "Jolteon",   img: "Assets/jolteon.png" },
+  "Water Stone":   { naam: "Vaporeon",  img: "Assets/vaporeon.png", achterkant: "Assets/vaporeonachterkant.png" },
+  "Fire Stone":    { naam: "Flareon",   img: "Assets/flareon.png", achterkant: "Assets/flareonachterkant.png" },
+  "Thunder Stone": { naam: "Jolteon",   img: "Assets/jolteon.png", achterkant: "Assets/jolteonachterkant.png" },
   "Leaf Stone":    { naam: "Leafeon",   img: "Assets/leafeon.png", achterkant: "Assets/leafeonachterkant.png" },
   "Ice Stone":     { naam: "Glaceon",   img: "Assets/glaceon.png", achterkant: "Assets/glaceonachterkant.png" },
-  "Moon Stone":    { naam: "Umbreon",   img: "Assets/umbreon.png" },
-  "Sun Stone":     { naam: "Espeon",    img: "Assets/espeon.png" },
+  "Moon Stone":    { naam: "Umbreon",   img: "Assets/umbreon.png", achterkant: "Assets/umbreonachterkant.png" },
+  "Sun Stone":     { naam: "Espeon",    img: "Assets/espeon.png", achterkant: "Assets/espeonachterkant.png" },
   "Fairy Stone":   { naam: "Sylveon",   img: "Assets/sylveon.png", achterkant: "Assets/sylveonachterkant.png" }
 }
 

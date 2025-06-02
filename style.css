@@ -52,9 +52,8 @@ body {
     margin-top: 0;
 }
 
-/* Buttons */
 .tamagochischerm .buttons {
-    display: contents; /* Gebruik grid posities per knop */
+    display: contents; 
 }
 
 .tamagochischerm .buttons button {
@@ -275,6 +274,105 @@ body {
     margin: 0;
     overflow-x: hidden;
     overflow-y: hidden;
+}
+
+.winscherm{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    background-color: rgb(94, 194, 85);
+}
+
+.winschermelementen{
+    grid-area: 1 / 2 / 3 / 2; /* div1 */
+}
+
+.winscherm #winbericht {
+    grid-area: 2 / 3 / 3 / 4; /* div1 */
+    text-align: center;
+    font-family: pixelfont, "Arial", sans-serif;
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+}
+
+.winscherm #itemMelding {
+    grid-area: 2 / 3 / 3 / 10; /* div1 */
+    text-align: center;
+    font-family: pixelfont, "Arial", sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+}
+
+.winscherm #gevondenItemAfbeelding {
+    grid-area: 2 / 5 / 5 / 4; /* div2 */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+}
+
+#tamagochischermknop{
+    grid-area: 8 / 10 / 10 / 5;
+    border-radius: 0.5em;
+    background-color: rgb(72, 176, 232);
+    padding: 0.5em;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-family: pixelfont, Arial, sans-serif;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#tamagochischermknop:hover{
+    font-weight: normal;
+    background-color: rgb(11, 99, 146);
+    color: white;
+    transform: scale(1.1);
+    transition: all 250ms ease;
+}
+
+.verliesscherm{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    background-color: rgb(194, 89, 85);
+}
+
+.verlieselementen{
+    grid-area: 1 / 2 / 3 / 2; /* div1 */
+}
+
+.verliesscherm #verliesbericht {
+    grid-area: 2 / 3 / 3 / 4; /* div1 */
+    text-align: center;
+    font-family: pixelfont, "Arial", sans-serif;
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+}
+
+#opnieuwknop{
+    grid-area: 8 / 10 / 10 / 5;
+    border-radius: 0.5em;
+    background-color: rgb(72, 176, 232);
+    padding: 0.5em;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-family: pixelfont, Arial, sans-serif;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#opnieuwknop:hover{
+    font-weight: normal;
+    background-color: rgb(11, 99, 146);
+    color: white;
+    transform: scale(1.1);
+    transition: all 250ms ease;
 }
 
 .hidden{
