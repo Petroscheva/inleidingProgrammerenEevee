@@ -1,8 +1,12 @@
 // VARIABELEN
 let pikachuHP = 120
 let eeveeHP = 100
+
+// CHAT GPT
+//prompt: ik wil nu dat de item van het wingevechtscherm in de items knop komt en dat je deze aan eevee kan geven in het tamagochischerm, waardoor deze kan evolueren in een van de 8 evoluaties
 let verkregenItems = []
 let huidigeEvolutie = null
+
 let huidigeEvolutieHP = 150
 
 const tamagochiScherm   = document.querySelector(".tamagochischerm")
@@ -34,6 +38,7 @@ const gevondenItemAfbeelding = document.querySelector("#gevondenItemAfbeelding")
 const itemMeldingElement     = document.querySelector("#itemMelding")
 
 // CHAT GPT
+//prompt: ik wil nu dat de item van het wingevechtscherm in de items knop komt en dat je deze aan eevee kan geven in het tamagochischerm, waardoor deze kan evolueren in een van de 8 evoluaties
 const evoluties = {
   "Water Stone":   { naam: "Vaporeon",  img: "Assets/vaporeon.png" },
   "Fire Stone":    { naam: "Flareon",   img: "Assets/flareon.png" },
@@ -74,6 +79,7 @@ function winGevecht() {
 
   resetBattle()
  // CHAT GPT
+ // prompt: ik wil nu dat de item van het wingevechtscherm in de items knop komt en dat je deze aan eevee kan geven in het tamagochischerm, waardoor deze kan evolueren in een van de 8 evoluaties
   const itemKeys = Object.keys(evoluties)
   const randomItem = itemKeys[Math.floor(Math.random() * itemKeys.length)]
   verkregenItems.push(randomItem)
@@ -111,6 +117,7 @@ function terugNaarTamagotchi() {
   resetBattle()
 }
 // CHAT GPT maar zelf aangepast
+// prompt: ik wil nu dat de item van het wingevechtscherm in de items knop komt en dat je deze aan eevee kan geven in het tamagochischerm, waardoor deze kan evolueren in een van de 8 evoluaties
 function geefItemAanEevee() {
   if (verkregenItems.length === 0) {
     evolutieTekst.textContent = "Je hebt nog geen items."
@@ -146,7 +153,7 @@ function geefItemAanEevee() {
   }
 }
 // CHATGPT
-// how to use javascript to play an audio file when you visit a website and change audio when a class is being hidden?
+// Prompt: how to use javascript to play an audio file when you visit a website and change audio when a class is being hidden?
 function stopEnResetAudio(audio) {
   audio.pause()
   audio.currentTime = 0
@@ -185,7 +192,8 @@ function berekenDamage(values, critChance = 0.2, critMultiplier = 2) {
   const damage = isCritical ? basisDamage * critMultiplier : basisDamage
   return { damage, isCritical }
 }
-
+// CHATGPT
+// Prompt: how to use javascript to play an audio file when you visit a website and change audio when a class is being hidden?
 function speelGeluid(src) {
   const a = new Audio(src)
   a.play()
@@ -264,6 +272,13 @@ function setupAttackButtons() {
   }
 }
 
+function laadPagina() {
+  achtergrondAudio.play()
+  setupAttackButtons()
+}
+
+laadPagina()
+
 eeveeAaien.addEventListener("mouseover", eeveeGeaaid)
 eeveeAaien.addEventListener("mouseout", plaatjeVeranderen)
 
@@ -273,9 +288,3 @@ verliesKnop.addEventListener("click", openGevecht)
 
 itemsKnop.addEventListener("click", geefItemAanEevee)
 
-function laadPagina() {
-  achtergrondAudio.play()
-  setupAttackButtons()
-}
-
-laadPagina()
